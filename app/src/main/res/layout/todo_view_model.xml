@@ -15,9 +15,9 @@
         android:paddingTop="10dp">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="10"
+            android:layout_weight="5"
             android:orientation="vertical"
             android:paddingTop="10dp">
 
@@ -51,12 +51,21 @@
 
         <ImageButton
             android:id="@+id/btnCompletadoToDoViewModel"
-            android:layout_width="0dp"
+            android:layout_width="7dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:layout_weight="3"
             android:backgroundTint="#00FFFFFF"
-            android:foregroundGravity="center"
+            android:foregroundGravity="center_horizontal"
             app:srcCompat="@android:drawable/checkbox_off_background" />
+
+        <ImageButton
+            android:id="@+id/btnEliminar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:cropToPadding="false"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

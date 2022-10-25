@@ -71,11 +71,35 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoVH> {
                        .show();
             }
         });
+        holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               confirmDelete("Vas a eliminar una tarea" ,holder.getAdapterPosition()).show();
+            }
+        });
     }
+
 
     @Override
     public int getItemCount() {
         return objects.size();
+    }
+
+
+    private AlertDialog confirmDelete(String titulo, int posicion){
+        AlertDialog.Builder builder=new AlertDialog.Builder(context);
+        builder.setTitle(titulo);
+        builder.setCancelable(false);
+
+        builder.setNegativeButton("NO",null);
+        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               objects.remove(posicion);
+                notifyItemRemoved(posicion);
+            }
+        });
+        return builder.create();
     }
 
      private AlertDialog confirmUpdate(String titulo, ToDo toDo){
@@ -98,7 +122,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoVH> {
     public class ToDoVH extends RecyclerView.ViewHolder {
 
         TextView lblTitulo, lblContenido, lblFecha;
-        ImageButton btnCompletado;
+        ImageButton btnCompletado, btnEliminar;
 
         public ToDoVH(@NonNull View itemView) {
             super(itemView);
@@ -107,7 +131,7 @@ public class ToDoAdapter extends RecyclerView.Adapter<ToDoAdapter.ToDoVH> {
             lblContenido = itemView.findViewById(R.id.lblContenidoToDoViewModel);
             lblFecha = itemView.findViewById(R.id.lblFechaToDoViewModel);
             btnCompletado = itemView.findViewById(R.id.btnCompletadoToDoViewModel);
-
+            btnEliminar=itemView.findViewById(R.id.btnEliminar);
         }
     }
 }
